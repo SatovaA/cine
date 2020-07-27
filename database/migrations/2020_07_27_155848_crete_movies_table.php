@@ -16,9 +16,8 @@ class CreteMoviesTable extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('movie_type');
-            $table->unsignedInteger('movie_types');
-            $table->foreign('movie_types')->references('id')->on('movie_types');
+            $table->unsignedInteger('movie_types_id');
+            $table->foreign('movie_types_id')->references('id')->on('movie_types');
             $table->boolean('status');
             $table->timestamps();
         });

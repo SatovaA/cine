@@ -13,7 +13,7 @@ class MoviesController extends Controller
     public function list()
     {
         $movies = Movie::select('movies.id','movies.name as name_movie', 'movie_types.name as name_type')
-        ->join('movie_types', 'movie_types.id', '=', 'movies.movie_types')
+        ->join('movie_types', 'movie_types.id', '=', 'movies.movie_types_id')
         ->get();
 
         $actors = Actor::select('actors.id', 'actors.name', 'actors.surname','actors_movies.movies_id')
@@ -39,7 +39,7 @@ class MoviesController extends Controller
 
             $movie = new Movie();
             $movie->name = $request->name;
-            $movie->movie_types = $request->type_id;
+            $movie->movie_types_id = $request->type_id;
             $movie->status = 1;
             $movie->save();
 
@@ -54,12 +54,13 @@ class MoviesController extends Controller
 
                 alert()->success('Exitoso','Se actualizo correctamente');
 
-            return redirect()->route('get_list_actors');
+            return redirect()->route('get_list_movies');
 
         }catch(\Exception $e) {
+
             alert()->error('Error','Ocurrio un error');
 
-            return redirect()->route('get_list_actors');
+            return redirect()->route('get_list_movies');
         }
     }
 
