@@ -25,6 +25,8 @@ class MoviesController extends Controller
     public function create()
     {
         $typeMovies = MovieType::all();
+
+        //Solo se muestra actores activos en el select
         $actors = Actor::where('status', 1)
         ->get();
 
