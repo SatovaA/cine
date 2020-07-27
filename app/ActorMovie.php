@@ -1,0 +1,11 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class ActorMovie extends Model
+{
+    protected $table = 'actors_movies';
+
+}
